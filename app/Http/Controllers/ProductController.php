@@ -11,17 +11,16 @@ class ProductController extends Controller
 {
     public function index()
     {
-        // $product_count = Product::count();
-        $product_count = Product::all();
+        $product = Product::all();
 
-        return response()->json($product_count);
+        return view('total_product', compact('product'));
     }
 
     public function altered()
     {
-        $product_count = Product::where('price', '>', 50)->get();
+        $products = Product::where('price', '<', 50)->get();
 
-        return response()->json($product_count);
+        return view('price50_product', compact('products'));
     }
 
     public function form()
